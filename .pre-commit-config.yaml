@@ -6,11 +6,16 @@ repos:
         args: [--fix]
       - id: ruff-format
 
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.13.0
+  # Runs the project's own mypy from .venv (same version, packages and command as CI), so it
+  # can't drift from uv.lock. language: unsupported = pre-commit doesn't build an env for it.
+  - repo: local
     hooks:
       - id: mypy
-        additional_dependencies: []
+        name: mypy
+        entry: uv run --locked mypy .
+        language: unsupported
+        types_or: [python, pyi]
+        pass_filenames: false
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
