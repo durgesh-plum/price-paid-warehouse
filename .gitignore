@@ -11,3 +11,11 @@ wheels/
 
 # Claude
 CLAUDE.md
+
+# Tool caches
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# Secrets
+.env
